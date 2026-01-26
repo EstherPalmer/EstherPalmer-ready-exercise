@@ -64,6 +64,7 @@ _Provide enough background on your topic that others can understand the why and 
 
 ## Description of data and data source
 _Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section._
+I added 2 variables, pets owned and number of books read. Pets owned is what type of pets each person in the data set owns, ignoring the fact that some people own multiple types. The number of books read is the number of books read by each person in the last year.
 
 ## Questions/Hypotheses to be addressed
 _State the research questions you plan to answer with this analysis._
