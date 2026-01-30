@@ -29,16 +29,14 @@ library(knitr)
 
 **Authors**  
 
-* First Author$^{1,2,*}$ (ORCID: 0000-0000-1234-5678) 
-* Second Author$^{3, *}$
-* Third Author$^{3, \dagger}$
-* Last Author$^{1, 2, \land}$ 
+* Esther Palmer$^{1,2,*}$ 
+* Katherine Lorusso$^{3, *}$
 
 **Author affiliations**  
 
-1. College of Public Health, University of Georgia, Athens, GA, USA.
-2. Another Affiliation, Athens, GA, USA.
-3. Yet another Affiliation.
+1. Departmet of Microbiology, University of Georgia, Athens, GA, USA.
+2. Department of Population Health, University of Georgia, GA, USA.
+3. University of Georgia.
 
 $*$ These authors contributed equally to this work.
 
@@ -50,31 +48,9 @@ author's own and don't reflect their employer.
 
 
 
-# Summary/Abstract
-_Write a summary of your project._
+# Summary
 
-_It is recommended to use a structured abstract with Background/Methods/Results/Discussion sections._
-
-
-
-# Introduction 
-
-## General Background Information
-_Provide enough background on your topic that others can understand the why and how of your analysis_ 
-
-## Description of data and data source
-_Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section._
-I added 2 variables, pets owned and number of books read. Pets owned is what type of pets each person in the data set owns, ignoring the fact that some people own multiple types. The number of books read is the number of books read by each person in the last year.
-
-## Questions/Hypotheses to be addressed
-_State the research questions you plan to answer with this analysis._
-
-To cite other work (important everywhere, but likely happens first in introduction), make sure your references are in the BibTeX file specified in the YAML header above and have the right BibTeX key. Then you can include like this:
-
-Examples of reproducible research projects can for instance be found in [@mckay2020; @mckay2020a].
-
-
-
+This project was part of an exercise for the MADA course to learn about data cleaning and the READY workflow.
 
 # Methods 
 
@@ -97,8 +73,7 @@ knitr::include_graphics(here("assets","antigen-recognition.png"))
 
 
 ## Data acquisition
-_As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
-
+Data was made up by Esther Palmer in order to have something for this exercise.
 
 ## Data import and cleaning
 _Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what kind of cleaning/processing you do, and provide more details and well documented code somewhere (e.g. as supplement in a paper). All materials, including files that contain code, should be commented well so everyone can follow along._
@@ -181,10 +156,6 @@ This paper [@leek2015] discusses types of analyses.
 These papers [@mckay2020; @mckay2020a] are good examples of papers published using a fully reproducible setup similar to the one shown in this template. 
 
 Note that this cited reference will show up at the end of the document, the reference formatting is determined by the CSL file specified in the YAML header. Many more style files for almost any journal [are available](https://www.zotero.org/styles). You also specify the location of your BibTeX reference file in the YAML. You can call your reference file anything you like.
-
-
-
-# References
 
 
 
