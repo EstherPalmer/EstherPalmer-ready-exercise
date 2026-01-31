@@ -56,33 +56,58 @@ This project was part of an exercise for the MADA course to learn about data cle
 
 _Describe your methods. That should describe the data, the cleaning processes, and the analysis approaches. You might want to provide a shorter description here and all the details in the supplement._
 
-
-## Schematic of workflow
-
-Sometimes you might want to show a schematic diagram/figure that was not created with code (if you can do it with code, do it). @fig-schematic is an example of some - completely random/unrelated - schematic that was generated with BioRender.
-We store those figures in the `assets` folder.
-
-```{r}
-#| label: fig-schematic
-#| fig-cap: "A figure that is manually generated and shows some overview/schematic. This has nothing to do with the data, it's just a random one from one of our projects I found and placed here."
-#| echo: FALSE
-knitr::include_graphics(here("assets","antigen-recognition.png"))
-```
-
-
+Data included height, weight, gender, pets owned, and number of books read in the last year. Data was cleaned by removing individuals from the set with missing data. Various plots and tables were made to explore the data. Data was eventually fit to a linear model for final analysis.
 
 
 ## Data acquisition
 Data was made up by Esther Palmer in order to have something for this exercise.
 
 ## Data import and cleaning
-_Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what kind of cleaning/processing you do, and provide more details and well documented code somewhere (e.g. as supplement in a paper). All materials, including files that contain code, should be commented well so everyone can follow along._
 
+Packages used:
+```{r}
+library(readxl) #for loading Excel files
+library(dplyr) #for data processing/cleaning
+library(tidyr) #for data processing/cleaning
+library(skimr) #for nice visualization of data 
+library(here) #to set paths
+```
 
-## Statistical analysis
-_Explain anything related to your statistical analyses._
+Load data
+```{r}
+data_location <- here::here("data","raw-data","exampledata2.xlsx")
+rawdata <- readxl::read_excel(data_location)
+codebook <- readxl::read_excel(data_location, sheet ="Codebook")
+```
 
+Clean Data
+```{r}
+d1 <- rawdata %>% dplyr::filter( Height != "sixty" ) %>% 
+                  dplyr::mutate(Height = as.numeric(Height))
 
+skimr::skim(d1)
+hist(d1$Height)
+
+d2 <- d1 %>% dplyr::mutate( Height = replace(Height, Height=="6",round(6*30.48,0)) )
+skimr::skim(d2)
+
+d3 <- d2 %>%  dplyr::filter(Weight != 7000) %>% tidyr::drop_na()
+skimr::skim(d3)
+
+d3$Gender <- as.factor(d3$Gender)  
+skimr::skim(d3)
+
+d3$Pets_owned <- as.factor(d3$Pets_owned)  
+skimr::skim(d3)
+
+d4 <- d3 %>% dplyr::filter( !(Gender %in% c("NA","N")) ) %>% droplevels()
+skimr::skim(d4)
+
+processeddata2 <- d4
+
+save_data_location <- here::here("data","processed-data","processeddata2.rds")
+saveRDS(processeddata2, file = save_data_location)
+```
 
 
 # Results
@@ -140,22 +165,5 @@ knitr::kable(resulttable2)
 
 # Discussion
 
-## Summary and Interpretation
-_Summarize what you did, what you found and what it means._
-
-## Strengths and Limitations
-_Discuss what you perceive as strengths and limitations of your analysis._
-
 ## Conclusions
-_What are the main take-home messages?_
-
-_Include citations in your Qmd file using BibTeX, the list of references will automatically be placed at the end_
-
-This paper [@leek2015] discusses types of analyses. 
-
-These papers [@mckay2020; @mckay2020a] are good examples of papers published using a fully reproducible setup similar to the one shown in this template. 
-
-Note that this cited reference will show up at the end of the document, the reference formatting is determined by the CSL file specified in the YAML header. Many more style files for almost any journal [are available](https://www.zotero.org/styles). You also specify the location of your BibTeX reference file in the YAML. You can call your reference file anything you like.
-
-
-
+It seems that reading books is negatively, although not signifigantly correlated with height.
